@@ -93,7 +93,7 @@ namespace Xano.AudioFileConversion
 			var decodedSignal = EncodeDecodeHalperFunctions.Decode(encodedSignal);
 			var temp = TypeConverter.ConvertDoubleToHex(decodedSignal, 0, 16);
 			decodedSignal = TypeConverter.ConvertHexToDouble(temp, 15, 16)/*.Select(x => (int)x).ToArray()*/;
-
+			// We probably shouldn't be doing this, we are upsampling again but aid will still play use 10khz sampling rate. 
 			var resampledDecodedSignal = Enumerable.Repeat(0.0, decodedSignal.Length * 2).ToArray();
 
 			for (int i = 0; i < decodedSignal.Length; i++)
